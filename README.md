@@ -4,7 +4,14 @@ support Android and iOS only
 
 ## ScreenShot
 
+### Basic Sample
+
 ![](screenshot01.gif)
+
+### Advanced - Decimal Selecting
+
+![](screenshot02.gif)
+
 
 ## Usage
 
