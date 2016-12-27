@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using PickerViewSample.Annotations;
 
@@ -27,109 +28,164 @@ namespace PickerViewSample
             get { return _value; }
             set
             {
-                _value = value;
-                OnPropertyChanged();
+				if (_value == value)
+				{
+					return;
+				}
+				_value = value;
+				OnPropertyChanged();
             }
         }
 
-        private int _selectedIndex0;
-        public int SelectedIndex0
+        private int _integerDigit0;
+        public int IntegerDigit0
         {
-            get { return _selectedIndex0; }
+            get { return _integerDigit0; }
             set
             {
-                _selectedIndex0 = value;
+                _integerDigit0 = value;
                 OnPropertyChanged();
             }
         }
 
-		private int _selectedIndex1;
-		public int SelectedIndex1
+		private int _integerDigit1;
+		public int IntegerDigit1
         {
-            get { return _selectedIndex1; }
+            get { return _integerDigit1; }
             set
             {
-                _selectedIndex1 = value;
+                _integerDigit1 = value;
                 OnPropertyChanged();
             }
         }
 
-		private int _selectedIndex2;
-		public int SelectedIndex2
+		private int _integerDigit2;
+		public int IntegerDigit2
         {
-            get { return _selectedIndex2; }
+            get { return _integerDigit2; }
             set
             {
-                _selectedIndex2 = value;
+                _integerDigit2 = value;
                 OnPropertyChanged();
             }
         }
 
-		private int _selectedIndex3;
-		public int SelectedIndex3
+		private int _integerDigit3;
+		public int IntegerDigit3
         {
-            get { return _selectedIndex3; }
+            get { return _integerDigit3; }
             set
             {
-                _selectedIndex3 = value;
+                _integerDigit3 = value;
                 OnPropertyChanged();
             }
         }
 
-		private int _selectedIndex4;
-		public int SelectedIndex4
+		private int _integerDigit4;
+		public int IntegerDigit4
         {
-            get { return _selectedIndex4; }
+            get { return _integerDigit4; }
             set
             {
-                _selectedIndex4 = value;
+                _integerDigit4 = value;
                 OnPropertyChanged();
             }
         }
 
-		private int _selectedIndex5;
-		public int SelectedIndex5
+		private int _integerDigit5;
+		public int IntegerDigit5
         {
-            get { return _selectedIndex5; }
+            get { return _integerDigit5; }
             set
             {
-                _selectedIndex5 = value;
+                _integerDigit5 = value;
                 OnPropertyChanged();
             }
         }
 
-        readonly IList<Action<int>> _setters = new List<Action<int>>();
-        readonly IList<Func<int>> _getters = new List<Func<int>>();
+        private int _decimalDigit0;
+        public int DecimalDigit0
+        {
+            get { return _decimalDigit0; }
+            set
+            {
+                _decimalDigit0 = value;
+                OnPropertyChanged();
+            }
+        }
+
+		private int _decimalDigit1;
+		public int DecimalDigit1
+		{
+			get { return _decimalDigit1; }
+			set
+			{
+				_decimalDigit1 = value;
+				OnPropertyChanged();
+			}
+		}
+
+		private int _decimalDigit2;
+		public int DecimalDigit2
+		{
+			get { return _decimalDigit2; }
+			set
+			{
+				_decimalDigit2 = value;
+				OnPropertyChanged();
+			}
+		}
+
+		readonly IList<Action<int>> _intSetters = new List<Action<int>>();
+		readonly IList<Func<int>> _intGetters = new List<Func<int>>();
+
+		readonly IList<Action<int>> _decSetters = new List<Action<int>>();
+		readonly IList<Func<int>> _decGetters = new List<Func<int>>();
 
         public MultiModel()
         {
             Numbers = new int[] {0,1,2,3,4,5,6,7,8,9};
-            Value = 12345;
 
-            _setters.Add(digitValue => SelectedIndex0 = digitValue);
-            _setters.Add(digitValue => SelectedIndex1 = digitValue);
-            _setters.Add(digitValue => SelectedIndex2 = digitValue);
-            _setters.Add(digitValue => SelectedIndex3 = digitValue);
-            _setters.Add(digitValue => SelectedIndex4 = digitValue);
-            _setters.Add(digitValue => SelectedIndex5 = digitValue);
+            _intSetters.Add(digitValue => IntegerDigit0 = digitValue);
+            _intSetters.Add(digitValue => IntegerDigit1 = digitValue);
+            _intSetters.Add(digitValue => IntegerDigit2 = digitValue);
+            _intSetters.Add(digitValue => IntegerDigit3 = digitValue);
+            _intSetters.Add(digitValue => IntegerDigit4 = digitValue);
+            _intSetters.Add(digitValue => IntegerDigit5 = digitValue);
 
-            _getters.Add(() => SelectedIndex0);
-            _getters.Add(() => SelectedIndex1);
-            _getters.Add(() => SelectedIndex2);
-            _getters.Add(() => SelectedIndex3);
-            _getters.Add(() => SelectedIndex4);
-            _getters.Add(() => SelectedIndex5);
+            _intGetters.Add(() => IntegerDigit0);
+            _intGetters.Add(() => IntegerDigit1);
+            _intGetters.Add(() => IntegerDigit2);
+            _intGetters.Add(() => IntegerDigit3);
+            _intGetters.Add(() => IntegerDigit4);
+            _intGetters.Add(() => IntegerDigit5);
+
+			_decSetters.Add(digitValue => DecimalDigit0 = digitValue);
+			_decSetters.Add(digitValue => DecimalDigit1 = digitValue);
+			_decSetters.Add(digitValue => DecimalDigit2 = digitValue);
+
+			_decGetters.Add(() => DecimalDigit0);
+			_decGetters.Add(() => DecimalDigit1);
+			_decGetters.Add(() => DecimalDigit2);
+
+			Value = 12345.3M;
         }
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
+			Debug.WriteLine($"OnPropertyChanged:{propertyName}");
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
-			if (propertyName.StartsWith("SelectedIndex"))
+			if (propertyName.StartsWith("IntegerDigit", StringComparison.Ordinal))
             {
-				var digitIndex = int.Parse(propertyName.Replace("SelectedIndex", ""));
-				UpdateDigit(digitIndex, _getters[digitIndex].Invoke());
+				var digitIndex = int.Parse(propertyName.Replace("IntegerDigit", ""));
+				UpdateIntDigit(digitIndex, _intGetters[digitIndex].Invoke());
+            }
+            else if (propertyName.StartsWith("DecimalDigit", StringComparison.Ordinal))
+            {
+                var digitIndex = int.Parse(propertyName.Replace("DecimalDigit", ""));
+                UpdateDecDigit(digitIndex, _decGetters[digitIndex].Invoke());
             }
             else if (propertyName == "Value")
             {
@@ -137,30 +193,50 @@ namespace PickerViewSample
             }
         }
 
-        private void UpdateDigit(int digitIndex, int digitValue)
+        private void UpdateIntDigit(int digitIndex, int digitValue)
         {
-			var numStr = Value.ToString(new string('0', _getters.Count));
-            var index = numStr.Length - (digitIndex + 1);
+			var numStr = Value.ToString(new string('0', _intGetters.Count) 
+			                            + "." 
+			                            + new string('0', _decGetters.Count));
+			var index = numStr.Length - (digitIndex + 2 + _decGetters.Count);
             var newNum = numStr.Substring(0, index) + digitValue.ToString() +  numStr.Substring(index + 1);
+
+            Value = decimal.Parse(newNum);
+        }
+
+        private void UpdateDecDigit(int digitIndex, int digitValue)
+        {
+            var numStr = Value.ToString("0." + new string('0', _decGetters.Count));
+			var index = Value.ToString("0").Length + (digitIndex + 1);
+			var newNum = numStr.Substring(0, index) + digitValue.ToString() +  numStr.Substring(index + 1);
 
             Value = decimal.Parse(newNum);
         }
 
         private void UpdateValue()
         {
-            for (int i = 0; i < _getters.Count; i++)
+            for (int i = 0; i < _intGetters.Count; i++)
             {
-                var digitValue = GetDigitValue(i);
-                if (digitValue != _getters[i].Invoke())
+                var digitValue = GetIntDigitValue(i);
+                if (digitValue != _intGetters[i].Invoke())
                 {
-                    _setters[i].Invoke(digitValue);
+                    _intSetters[i].Invoke(digitValue);
                 }
             }
-        }
 
-        private int GetDigitValue(int digitIndex)
-        {
-            var numStr = Value.ToString();
+			for (int i = 0; i < _decGetters.Count; i++)
+			{
+				var digitValue = GetDecDigitValue(i);
+				if (digitValue != _decGetters[i].Invoke())
+				{
+					_decSetters[i].Invoke(digitValue);
+				}
+			}
+		}
+
+        private int GetIntDigitValue(int digitIndex)
+		{
+			var numStr = Math.Floor(Value).ToString("0");
             var index = numStr.Length - (digitIndex + 1);
 
             if (index < 0)
@@ -170,5 +246,18 @@ namespace PickerViewSample
 
             return Convert.ToInt32(numStr.Substring(index, 1));
         }
-    }
+
+		private int GetDecDigitValue(int digitIndex)
+		{
+			var numStr = Value.ToString("0." + new string('0', _decGetters.Count)); // 12.3 -> 12.30
+			var index = Value.ToString("0").Length + (digitIndex + 1);
+
+			if (index < 0)
+			{
+				return 0;
+			}
+
+			return Convert.ToInt32(numStr.Substring(index, 1));
+		}
+	}
 }

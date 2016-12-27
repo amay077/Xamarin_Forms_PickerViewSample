@@ -16,7 +16,7 @@ xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <Grid>
+        <Grid ColumnSpacing="0" RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -29,35 +29,56 @@ xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" /> 
+                <ColumnDefinition Width="Auto" /><!--小数点-->
+                <ColumnDefinition Width="*" /> 
+                <ColumnDefinition Width="*" /> 
+                <ColumnDefinition Width="*" /> 
             </Grid.ColumnDefinitions>
 
             <local:PickerView
                 Grid.Row="0" Grid.Column="0"
                 ItemsSource="{Binding Numbers}"
-                SelectedIndex="{Binding SelectedIndex5}" />
+                SelectedIndex="{Binding IntegerDigit5}" />
             <local:PickerView
                 Grid.Row="0" Grid.Column="1"
                 ItemsSource="{Binding Numbers}"
-                SelectedIndex="{Binding SelectedIndex4}" />
+                SelectedIndex="{Binding IntegerDigit4}" />
             <local:PickerView
                 Grid.Row="0" Grid.Column="2"
                 ItemsSource="{Binding Numbers}"
-                SelectedIndex="{Binding SelectedIndex3}" />
+                SelectedIndex="{Binding IntegerDigit3}" />
             <local:PickerView
                 Grid.Row="0" Grid.Column="3"
                 ItemsSource="{Binding Numbers}"
-                SelectedIndex="{Binding SelectedIndex2}" />
+                SelectedIndex="{Binding IntegerDigit2}" />
             <local:PickerView
                 Grid.Row="0" Grid.Column="4"
                 ItemsSource="{Binding Numbers}"
-                SelectedIndex="{Binding SelectedIndex1}" />
+                SelectedIndex="{Binding IntegerDigit1}" />
             <local:PickerView
                 Grid.Row="0" Grid.Column="5"
                 ItemsSource="{Binding Numbers}"
-                SelectedIndex="{Binding SelectedIndex0}" />
+                SelectedIndex="{Binding IntegerDigit0}" />
+			<Label 
+                Grid.Row="0" Grid.Column="6"
+				VerticalOptions="Center"
+				Text="."/>
+            <local:PickerView
+                Grid.Row="0" Grid.Column="7"
+                ItemsSource="{Binding Numbers}"
+                SelectedIndex="{Binding DecimalDigit0}" />
+            <local:PickerView
+                Grid.Row="0" Grid.Column="8"
+                ItemsSource="{Binding Numbers}"
+                SelectedIndex="{Binding DecimalDigit1}" />
+            <local:PickerView
+                Grid.Row="0" Grid.Column="9"
+                ItemsSource="{Binding Numbers}"
+                SelectedIndex="{Binding DecimalDigit2}" />
 
-            <Label Text="Value:" Grid.Row="1" Grid.Column="1"/>
-            <Entry Text="{Binding Value, Mode=TwoWay}" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="5"/>
+            <Label Text="Value:" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" />
+            <Entry Text="{Binding Value, Mode=TwoWay}" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="4"/>
         </Grid>
 
     </ContentPage.Content>
