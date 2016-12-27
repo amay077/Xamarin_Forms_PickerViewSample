@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PickerViewSample.MultiPickerViewSamplePage"
+             xmlns:local="clr-namespace:PickerViewSample"
+             Padding="10"
+             Title="MultiPickerView Sample">
+    <ContentPage.BindingContext>
+        <local:MultiModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <local:PickerView
+                Grid.Row="0" Grid.Column="0"
+                ItemsSource="{Binding Numbers}"
+                SelectedIndex="{Binding SelectedIndex5}" />
+            <local:PickerView
+                Grid.Row="0" Grid.Column="1"
+                ItemsSource="{Binding Numbers}"
+                SelectedIndex="{Binding SelectedIndex4}" />
+            <local:PickerView
+                Grid.Row="0" Grid.Column="2"
+                ItemsSource="{Binding Numbers}"
+                SelectedIndex="{Binding SelectedIndex3}" />
+            <local:PickerView
+                Grid.Row="0" Grid.Column="3"
+                ItemsSource="{Binding Numbers}"
+                SelectedIndex="{Binding SelectedIndex2}" />
+            <local:PickerView
+                Grid.Row="0" Grid.Column="4"
+                ItemsSource="{Binding Numbers}"
+                SelectedIndex="{Binding SelectedIndex1}" />
+            <local:PickerView
+                Grid.Row="0" Grid.Column="5"
+                ItemsSource="{Binding Numbers}"
+                SelectedIndex="{Binding SelectedIndex0}" />
+
+            <Label Text="Value:" Grid.Row="1" Grid.Column="1"/>
+            <Entry Text="{Binding Value, Mode=TwoWay}" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="5"/>
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

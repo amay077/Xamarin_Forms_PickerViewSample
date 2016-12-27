@@ -8,7 +8,7 @@ namespace PickerViewSample
 		{
 			InitializeComponent();
 
-			MainPage = new NavigationPage(new PickerViewSamplePage());
+			MainPage = new NavigationPage(new StartPage());
 		}
 
 		protected override void OnStart()

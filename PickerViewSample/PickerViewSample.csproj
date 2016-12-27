@@ -30,19 +30,33 @@
   <ItemGroup>
     <EmbeddedResource Include="App.xaml" />
     <EmbeddedResource Include="PickerViewSamplePage.xaml" />
+    <EmbeddedResource Include="MultiPickerViewSamplePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StartPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DigitConverter.cs" />
     <Compile Include="ItemsSourceConverter.cs" />
     <Compile Include="Model.cs" />
+    <Compile Include="MultiModel.cs" />
     <Compile Include="PickerViewSamplePage.xaml.cs">
       <DependentUpon>PickerViewSamplePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PickerView.cs" />
+    <Compile Include="MultiPickerViewSamplePage.xaml.cs">
+      <DependentUpon>MultiPickerViewSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StartPage.xaml.cs">
+      <DependentUpon>StartPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
