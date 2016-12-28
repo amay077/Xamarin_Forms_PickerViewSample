@@ -41,7 +41,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DecimalDigitVisibleConverter.cs" />
     <Compile Include="DigitConverter.cs" />
+    <Compile Include="IntegerDigitVisibleConverter.cs" />
     <Compile Include="ItemsSourceConverter.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="MultiModel.cs" />

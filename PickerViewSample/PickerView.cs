@@ -44,5 +44,30 @@ namespace PickerViewSample
         }
         #endregion
 
-    }
+        #region FontSize
+
+		public static readonly BindableProperty FontSizeProperty = BindableProperty.Create("FontSize", typeof(double), typeof(PickerView), -1.0,
+			defaultValueCreator: bindable => Device.GetNamedSize(NamedSize.Default, (PickerView)bindable));
+
+		public double FontSize
+		{
+			get { return (double)GetValue(FontSizeProperty); }
+			set { SetValue(FontSizeProperty, value); }
+		}
+
+		#endregion
+
+		#region FontFamily
+
+		public static readonly BindableProperty FontFamilyProperty = BindableProperty.Create("FontFamily", typeof(string), typeof(PickerView), default(string));
+
+		public string FontFamily
+		{
+			get { return (string)GetValue(FontFamilyProperty); }
+			set { SetValue(FontFamilyProperty, value); }
+		}
+
+		#endregion
+
+	}
 }

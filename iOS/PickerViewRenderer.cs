@@ -46,14 +46,26 @@ namespace PickerViewSample.iOS
 	        {
 	            UpdateSelectedIndex();
 	        }
+	        else if (e.PropertyName == PickerView.FontSizeProperty.PropertyName)
+	        {
+	            UpdateItemsSource();
+	        }
+	        else if (e.PropertyName == PickerView.FontFamilyProperty.PropertyName)
+	        {
+	            UpdateItemsSource();
+	        }
 	    }
 
 	    private void UpdateItemsSource()
 	    {
+			var font = string.IsNullOrEmpty(Element.FontFamily) ? 
+			                 Font.SystemFontOfSize(Element.FontSize) : 
+			                 Font.OfSize(Element.FontFamily, Element.FontSize);
+	        var nativeFont = font.ToUIFont();
 	        Control.Model = new MyDataModel(this.Element.ItemsSource, row =>
 	        {
 	            Element.SelectedIndex = row;
-	        });
+	        }, nativeFont);
 	    }
 
 	    private void UpdateSelectedIndex()
@@ -76,10 +88,12 @@ namespace PickerViewSample.iOS
 	{
 	    private readonly IList<string> _list = new List<string>();
 	    private readonly Action<int> _selectedHandler;
+	    private readonly UIFont _nativeFont;
 
-	    public MyDataModel(IEnumerable items, Action<int> selectedHandler)
+	    public MyDataModel(IEnumerable items, Action<int> selectedHandler, UIFont nativeFont)
 		{
 		    _selectedHandler = selectedHandler;
+		    _nativeFont = nativeFont;
 
 		    if (items != null)
 			{
@@ -103,6 +117,17 @@ namespace PickerViewSample.iOS
 		public override string GetTitle(UIPickerView pickerView, System.nint row, System.nint component)
 		{
 			return _list[(int)row];
+		}
+
+		public override UIView GetView(UIPickerView pickerView, nint row, nint component, UIView view)
+		{
+			UILabel label = new UILabel(pickerView.Bounds);
+		    label.Font = _nativeFont;
+		    label.Text = _list[(int)row];
+			label.TextAlignment = UITextAlignment.Center;
+			return label;
+
+			//return base.GetView(pickerView, row, component, view);
 		}
 
 	    public override void Selected(UIPickerView pickerView, nint row, nint component)
