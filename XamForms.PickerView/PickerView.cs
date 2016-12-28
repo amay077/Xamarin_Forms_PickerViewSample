@@ -8,23 +8,19 @@ namespace XamForms.PickerView
 	{
 		#region ItemsSource
 		public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(nameof(ItemsSource),
-			typeof(IEnumerable), typeof(PickerView), null, propertyChanged: OnItemsSourceChanged);
+			typeof(IEnumerable), typeof(PickerView), null);
 
 		public IEnumerable ItemsSource
 		{
 			get { return (IEnumerable)GetValue(ItemsSourceProperty); }
 			set { SetValue(ItemsSourceProperty, value); }
 		}
-
-		private static void OnItemsSourceChanged(BindableObject bindable, object oldvalue, object newvalue)
-		{
-		}
 		#endregion
 
 		#region SelectedIndex
 		public static readonly BindableProperty SelectedIndexProperty =
 			BindableProperty.Create(nameof(SelectedIndex), typeof(int), typeof(PickerView), -1, BindingMode.TwoWay,
-				propertyChanged: OnSelectedIndexChanged, coerceValue: CoerceSelectedIndex);
+				coerceValue: CoerceSelectedIndex);
 
 
 		public int SelectedIndex
@@ -35,18 +31,19 @@ namespace XamForms.PickerView
 
 		private static object CoerceSelectedIndex(BindableObject bindable, object value)
 		{
+			if (value == null)
+			{
+				return 0;
+			}
 			return value;
-		}
-
-		private static void OnSelectedIndexChanged(BindableObject bindable, object oldvalue, object newvalue)
-		{
 		}
 		#endregion
 
 		#region FontSize
 
 		public static readonly BindableProperty FontSizeProperty = BindableProperty.Create("FontSize", typeof(double), typeof(PickerView), -1.0,
-			defaultValueCreator: bindable => Device.GetNamedSize(NamedSize.Default, (PickerView)bindable));
+       		defaultValueCreator: bindable => Device.GetNamedSize(NamedSize.Default, (PickerView)bindable), 
+           	coerceValue:CoerceFontSize);
 
 		public double FontSize
 		{
@@ -54,6 +51,14 @@ namespace XamForms.PickerView
 			set { SetValue(FontSizeProperty, value); }
 		}
 
+		private static object CoerceFontSize(BindableObject bindable, object value)
+		{
+			if (value == null)
+			{
+				return Device.GetNamedSize(NamedSize.Default, (PickerView)bindable);
+			}
+			return value;
+		}
 		#endregion
 
 		#region FontFamily

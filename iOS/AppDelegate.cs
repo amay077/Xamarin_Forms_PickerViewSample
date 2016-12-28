@@ -14,6 +14,8 @@ namespace PickerViewSample.iOS
 		{
 			global::Xamarin.Forms.Forms.Init();
 
+			XamForms.PickerView.Initializer.Init();
+
 			LoadApplication(new App());
 
 			return base.FinishedLaunching(app, options);

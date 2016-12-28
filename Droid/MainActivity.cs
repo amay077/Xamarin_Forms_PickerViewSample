@@ -21,6 +21,7 @@ namespace PickerViewSample.Droid
 			base.OnCreate(bundle);
 
 			global::Xamarin.Forms.Forms.Init(this, bundle);
+			XamForms.PickerView.Initializer.Init(this, bundle);
 
 			LoadApplication(new App());
 		}

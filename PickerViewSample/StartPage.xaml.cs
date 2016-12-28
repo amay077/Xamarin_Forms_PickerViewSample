@@ -12,14 +12,14 @@ namespace PickerViewSample
 			InitializeComponent();
 		}
 
-	    private void BasicOnClick(object sender, EventArgs e)
+		private async void BasicOnClick(object sender, EventArgs e)
 	    {
-	        Navigation.PushAsync(new PickerViewSamplePage());
+	        await Navigation.PushAsync(new PickerViewSamplePage());
 	    }
 
-	    private void MultiOnClick(object sender, EventArgs e)
+		private async void MultiOnClick(object sender, EventArgs e)
 	    {
-	        Navigation.PushAsync(new MultiPickerViewSamplePage());
+	        await Navigation.PushAsync(new MultiPickerViewSamplePage());
 	    }
 	}
 }

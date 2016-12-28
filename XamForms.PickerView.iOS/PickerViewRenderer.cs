@@ -13,7 +13,7 @@ using XamForms.PickerView.iOS;
 
 namespace XamForms.PickerView.iOS
 {
-    public class PickerViewRenderer : ViewRenderer<PickerView, UIPickerView>
+	public class PickerViewRenderer : ViewRenderer<PickerView, UIPickerView>
     {
         protected override void OnElementChanged(ElementChangedEventArgs<PickerView> e)
         {

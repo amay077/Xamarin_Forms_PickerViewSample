@@ -112,8 +112,6 @@ namespace XamForms.PickerView.Droid
                 Font.SystemFontOfSize(Element.FontSize) :
                 Font.OfSize(Element.FontFamily, Element.FontSize);
 
-            var scaledPx = font.ToScaledPixel();
-
             SetTextSize(Control, font.ToTypeface(), (float)(Element.FontSize * Context.Resources.DisplayMetrics.Density));
         }
 

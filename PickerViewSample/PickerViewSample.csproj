@@ -71,6 +71,10 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XamForms.PickerView\XamForms.PickerView.csproj">
+      <Project>{025442D4-13A8-4C9D-9618-80557EB383B2}</Project>
+      <Name>XamForms.PickerView.iOS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XamForms.PickerView\XamForms.PickerView.csproj">
       <Project>{EA3AE70C-D45B-4541-9A7E-781FC48FED99}</Project>
       <Name>XamForms.PickerView</Name>
     </ProjectReference>

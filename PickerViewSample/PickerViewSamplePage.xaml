@@ -3,7 +3,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:PickerViewSample"
-             xmlns:ext="clr-namespace:XamForms.PickerView;assembly=XamForms.PickerView"
+             xmlns:pickerView="clr-namespace:XamForms.PickerView;assembly=XamForms.PickerView"
              x:Class="PickerViewSample.PickerViewSamplePage"
 			 Padding="10"
 			 Title="PickerView Sample">
@@ -28,15 +28,20 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
-        <ext:PickerView
+        <pickerView:PickerView
             Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
             ItemsSource="{Binding Text, Source={x:Reference entryItemsSource}, Converter={StaticResource itemsConv}}"
-            SelectedIndex="{Binding Text, Source={x:Reference entrySelectedIndex}, Mode=TwoWay}" />
+            SelectedIndex="{Binding Text, Source={x:Reference entrySelectedIndex}, Mode=TwoWay}" 
+            FontSize="{Binding Text, Source={x:Reference entryFontSize}}" 
+		/>
 
         <Label Grid.Row="1" Grid.Column="0" Text="ItemsSource" />
         <Entry Grid.Row="1" Grid.Column="1" x:Name="entryItemsSource" Text="1,2,3"/>
 
         <Label Grid.Row="2" Grid.Column="0" Text="SelectedIndex" />
-        <Entry Grid.Row="2" Grid.Column="1" x:Name="entrySelectedIndex" Text="0" />
+        <Entry Grid.Row="2" Grid.Column="1" x:Name="entrySelectedIndex" />
+
+        <Label Grid.Row="3" Grid.Column="0" Text="FontSize" />
+        <Entry Grid.Row="3" Grid.Column="1" x:Name="entryFontSize" FontSize="{Binding Text, Source={x:Reference entryFontSize}}" Text="-1" />		
     </Grid>
 </ContentPage>

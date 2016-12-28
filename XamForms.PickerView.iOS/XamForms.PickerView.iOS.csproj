@@ -68,6 +68,7 @@
   <ItemGroup>
     <Compile Include="PickerViewRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Initializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XamForms.PickerView\XamForms.PickerView.csproj">
