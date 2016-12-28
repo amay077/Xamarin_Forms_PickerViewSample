@@ -1,31 +1,26 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PickerViewSample.MultiPickerViewSamplePage"
-             xmlns:local="clr-namespace:PickerViewSample"
-             xmlns:ext="clr-namespace:XamForms.PickerView;assembly=XamForms.PickerView"
-             Padding="10"
-             Title="MultiPickerView Sample">
-    <ContentPage.BindingContext>
-        <local:MultiModel />
-    </ContentPage.BindingContext>
-
-    <ContentPage.Resources>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:XamForms.PickerView;assembly=XamForms.PickerView"
+             x:Class="XamForms.PickerView.NumbersPickerView">
+<!--    <ContentView.BindingContext>
+        <local:NumbersPickerViewModel/>
+    </ContentView.BindingContext>
+-->
+    <ContentView.Resources>
         <ResourceDictionary>
             <local:IntegerDigitVisibleConverter x:Key="intDigitConv" />
             <local:DecimalDigitVisibleConverter x:Key="decDigitConv" />
         </ResourceDictionary>
-    </ContentPage.Resources>
+    </ContentView.Resources>
 
-    <ContentPage.Content>
-        <Grid ColumnSpacing="0" RowSpacing="0">
+    <ContentView.Content>
+        <Grid x:Name="grid" ColumnSpacing="0" RowSpacing="0">
+            <Grid.BindingContext>
+                <local:NumbersPickerViewModel/>
+            </Grid.BindingContext>
+
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
@@ -44,92 +39,74 @@
 
             <local:PickerView
                 Grid.Row="0" Grid.Column="0"
-				FontSize="{Binding FontSize}"
+                FontSize="{Binding FontSize}"
                 IsVisible="{Binding IntegerDigitLength,
                     Converter={StaticResource intDigitConv}, ConverterParameter=5}"
                 ItemsSource="{Binding Numbers}"
                 SelectedIndex="{Binding IntegerDigit5}" />
             <local:PickerView
                 Grid.Row="0" Grid.Column="1"
-				FontSize="{Binding FontSize}"
+                FontSize="{Binding FontSize}"
                 IsVisible="{Binding IntegerDigitLength,
                     Converter={StaticResource intDigitConv}, ConverterParameter=4}"
                 ItemsSource="{Binding Numbers}"
                 SelectedIndex="{Binding IntegerDigit4}" />
             <local:PickerView
                 Grid.Row="0" Grid.Column="2"
-				FontSize="{Binding FontSize}"
+                FontSize="{Binding FontSize}"
                 IsVisible="{Binding IntegerDigitLength,
                     Converter={StaticResource intDigitConv}, ConverterParameter=3}"
                 ItemsSource="{Binding Numbers}"
                 SelectedIndex="{Binding IntegerDigit3}" />
             <local:PickerView
                 Grid.Row="0" Grid.Column="3"
-				FontSize="{Binding FontSize}"
+                FontSize="{Binding FontSize}"
                 IsVisible="{Binding IntegerDigitLength,
                     Converter={StaticResource intDigitConv}, ConverterParameter=2}"
                 ItemsSource="{Binding Numbers}"
                 SelectedIndex="{Binding IntegerDigit2}" />
             <local:PickerView
                 Grid.Row="0" Grid.Column="4"
-				FontSize="{Binding FontSize}"
+                FontSize="{Binding FontSize}"
                 IsVisible="{Binding IntegerDigitLength,
                     Converter={StaticResource intDigitConv}, ConverterParameter=1}"
                 ItemsSource="{Binding Numbers}"
                 SelectedIndex="{Binding IntegerDigit1}" />
             <local:PickerView
                 Grid.Row="0" Grid.Column="5"
-				FontSize="{Binding FontSize}"
+                FontSize="{Binding FontSize}"
                 IsVisible="{Binding IntegerDigitLength,
                     Converter={StaticResource intDigitConv}, ConverterParameter=0}"
                 ItemsSource="{Binding Numbers}"
                 SelectedIndex="{Binding IntegerDigit0}" />
             <Label
                 Grid.Row="0" Grid.Column="6"
-				FontSize="{Binding FontSize}"
+                FontSize="{Binding FontSize}"
                 IsVisible="{Binding DecimalDigitLength,
                     Converter={StaticResource decDigitConv}, ConverterParameter=0}"
                 VerticalOptions="Center"
                 Text="." />
             <local:PickerView
                 Grid.Row="0" Grid.Column="7"
-				FontSize="{Binding FontSize}"
+                FontSize="{Binding FontSize}"
                 IsVisible="{Binding DecimalDigitLength,
                     Converter={StaticResource decDigitConv}, ConverterParameter=0}"
                 ItemsSource="{Binding Numbers}"
                 SelectedIndex="{Binding DecimalDigit0}" />
             <local:PickerView
                 Grid.Row="0" Grid.Column="8"
-				FontSize="{Binding FontSize}"
+                FontSize="{Binding FontSize}"
                 IsVisible="{Binding DecimalDigitLength,
                     Converter={StaticResource decDigitConv}, ConverterParameter=1}"
                 ItemsSource="{Binding Numbers}"
                 SelectedIndex="{Binding DecimalDigit1}" />
             <local:PickerView
                 Grid.Row="0" Grid.Column="9"
-				FontSize="{Binding FontSize}"
+                FontSize="{Binding FontSize}"
                 IsVisible="{Binding DecimalDigitLength,
                     Converter={StaticResource decDigitConv}, ConverterParameter=2}"
                 ItemsSource="{Binding Numbers}"
                 SelectedIndex="{Binding DecimalDigit2}" />
-
-            <Label Text="Value:" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" />
-            <Entry Text="{Binding Value, Mode=TwoWay}" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="5" />
-
-            <Label Text="IntegerDigitLen:" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" />
-            <Entry Text="{Binding IntegerDigitLength, Mode=TwoWay}" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="5" />
-
-            <Label Text="DecimalDigitLen:" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" />
-            <Entry Text="{Binding DecimalDigitLength, Mode=TwoWay}" Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="5" />
-
-            <Label Text="FontSize:" FontSize="{Binding FontSize}" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4" />
-            <Entry x:Name="entryFontSize" Text="{Binding FontSize, Mode=TwoWay}" FontSize="{Binding FontSize}" Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="5" />
-
-            <ext:NumbersPickerView 
-				Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="7"
-				BindingContext="{x:Reference Name=entryFontSize}"
-                FontSize="{Binding Text}" />
         </Grid>
-
-    </ContentPage.Content>
-</ContentPage>
+    </ContentView.Content>
+</ContentView>

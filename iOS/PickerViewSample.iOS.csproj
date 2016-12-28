@@ -107,6 +107,14 @@
       <Project>{AB55139D-9C21-437F-B2BA-0DB34B5EAC2F}</Project>
       <Name>PickerViewSample</Name>
     </ProjectReference>
+    <ProjectReference Include="..\XamForms.PickerView\XamForms.PickerView.csproj">
+      <Project>{EA3AE70C-D45B-4541-9A7E-781FC48FED99}</Project>
+      <Name>XamForms.PickerView</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XamForms.PickerView.iOS\XamForms.PickerView.iOS.csproj">
+      <Project>{025442D4-13A8-4C9D-9618-80557EB383B2}</Project>
+      <Name>XamForms.PickerView.iOS</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />

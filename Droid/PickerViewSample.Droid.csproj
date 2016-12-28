@@ -87,6 +87,14 @@
       <Project>{AB55139D-9C21-437F-B2BA-0DB34B5EAC2F}</Project>
       <Name>PickerViewSample</Name>
     </ProjectReference>
+    <ProjectReference Include="..\XamForms.PickerView\XamForms.PickerView.csproj">
+      <Project>{EA3AE70C-D45B-4541-9A7E-781FC48FED99}</Project>
+      <Name>XamForms.PickerView</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XamForms.PickerView.Droid\XamForms.PickerView.Droid.csproj">
+      <Project>{83D38FB4-E30E-4DC3-8B46-0F2772043720}</Project>
+      <Name>XamForms.PickerView.Droid</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
