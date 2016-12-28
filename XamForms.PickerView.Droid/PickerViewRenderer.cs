@@ -62,14 +62,38 @@ namespace XamForms.PickerView.Droid
         private void UpdateItemsSource()
         {
             var arr = new List<string>();
-            foreach (var item in Element.ItemsSource)
-            {
-                arr.Add(item.ToString());
-            }
+			if (Element.ItemsSource != null)
+			{
+				foreach (var item in Element.ItemsSource)
+				{
+					arr.Add(item.ToString());
+				}
 
-            Control.SetDisplayedValues(arr.ToArray());
-            Control.MinValue = 0;
-            Control.MaxValue = arr.Count - 1;
+			}
+
+			if (arr.Count > 0)
+			{
+				int newMax = arr.Count - 1;
+				if (newMax < Control.Value)
+				{
+					Element.SelectedIndex = newMax;
+				}
+
+				var extend = Control.MaxValue <= newMax;
+
+				if (extend)
+				{
+					Control.SetDisplayedValues(arr.ToArray());
+				}
+
+				Control.MaxValue = newMax;
+				Control.MinValue = 0;
+
+				if (!extend)
+				{
+					Control.SetDisplayedValues(arr.ToArray());
+				}
+			}
         }
 
         private void UpdateSelectedIndex()

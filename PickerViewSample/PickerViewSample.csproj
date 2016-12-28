@@ -36,34 +36,23 @@
     <EmbeddedResource Include="StartPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="NumbersPickerView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DecimalDigitVisibleConverter.cs" />
-    <Compile Include="DigitConverter.cs" />
-    <Compile Include="IntegerDigitVisibleConverter.cs" />
     <Compile Include="ItemsSourceConverter.cs" />
-    <Compile Include="Model.cs" />
     <Compile Include="MultiModel.cs" />
     <Compile Include="PickerViewSamplePage.xaml.cs">
       <DependentUpon>PickerViewSamplePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PickerView.cs" />
     <Compile Include="MultiPickerViewSamplePage.xaml.cs">
       <DependentUpon>MultiPickerViewSamplePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="StartPage.xaml.cs">
       <DependentUpon>StartPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NumbersPickerView.xaml.cs">
-      <DependentUpon>NumbersPickerView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

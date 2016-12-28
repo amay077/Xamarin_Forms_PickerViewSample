@@ -3,13 +3,10 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:PickerViewSample"
+             xmlns:ext="clr-namespace:XamForms.PickerView;assembly=XamForms.PickerView"
              x:Class="PickerViewSample.PickerViewSamplePage"
 			 Padding="10"
 			 Title="PickerView Sample">
-
-    <ContentPage.BindingContext>
-        <local:Model />
-    </ContentPage.BindingContext>
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -22,6 +19,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -30,15 +28,15 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
-        <local:PickerView
+        <ext:PickerView
             Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
-            ItemsSource="{Binding ItemsSource, Converter={StaticResource itemsConv}}"
-            SelectedIndex="{Binding SelectedIndex}" />
+            ItemsSource="{Binding Text, Source={x:Reference entryItemsSource}, Converter={StaticResource itemsConv}}"
+            SelectedIndex="{Binding Text, Source={x:Reference entrySelectedIndex}, Mode=TwoWay}" />
 
         <Label Grid.Row="1" Grid.Column="0" Text="ItemsSource" />
-        <Entry Grid.Row="1" Grid.Column="1" Text="{Binding ItemsSource, Mode=TwoWay}" />
+        <Entry Grid.Row="1" Grid.Column="1" x:Name="entryItemsSource" Text="1,2,3"/>
 
         <Label Grid.Row="2" Grid.Column="0" Text="SelectedIndex" />
-        <Entry Grid.Row="2" Grid.Column="1" Text="{Binding SelectedIndex, Mode=TwoWay}" />
+        <Entry Grid.Row="2" Grid.Column="1" x:Name="entrySelectedIndex" Text="0" />
     </Grid>
 </ContentPage>
