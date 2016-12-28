@@ -120,8 +120,8 @@
             <Label Text="DecimalDigitLen:" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" />
             <Entry Text="{Binding DecimalDigitLength, Mode=TwoWay}" Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="5" />
 
-            <Label Text="FontSize:" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4" />
-            <Entry Text="{Binding FontSize, Mode=TwoWay}" Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="5" />
+            <Label Text="FontSize:" FontSize="{Binding FontSize}" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4" />
+            <Entry Text="{Binding FontSize, Mode=TwoWay}" FontSize="{Binding FontSize}" Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="5" />
         </Grid>
 
     </ContentPage.Content>
