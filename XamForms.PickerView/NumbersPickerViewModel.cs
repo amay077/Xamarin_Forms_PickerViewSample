@@ -101,12 +101,56 @@ namespace XamForms.PickerView
             }
         }
 
-        private int _decimalDigit0;
+		private int _integerDigit6;
+		public int IntegerDigit6
+		{
+			get { return _integerDigit6; }
+			set
+			{
+				_integerDigit6 = value;
+				OnPropertyChanged();
+			}
+		}
+
+		private int _integerDigit7;
+		public int IntegerDigit7
+		{
+			get { return _integerDigit7; }
+			set
+			{
+				_integerDigit7 = value;
+				OnPropertyChanged();
+			}
+		}
+
+		private int _integerDigit8;
+		public int IntegerDigit8
+		{
+			get { return _integerDigit8; }
+			set
+			{
+				_integerDigit8 = value;
+				OnPropertyChanged();
+			}
+		}
+
+		private int _integerDigit9;
+		public int IntegerDigit9
+		{
+			get { return _integerDigit9; }
+			set
+			{
+				_integerDigit9 = value;
+				OnPropertyChanged();
+			}
+		}
+
+		private int _decimalDigit0;
         public int DecimalDigit0
         {
             get { return _decimalDigit0; }
             set
-            {
+			{
                 _decimalDigit0 = value;
                 OnPropertyChanged();
             }
@@ -140,7 +184,12 @@ namespace XamForms.PickerView
             get { return _integerDigitLength; }
             set
             {
-                _integerDigitLength = value;
+				if (!(0 < value && value <= MaxIntegerDigitLength))
+				{
+					throw new IndexOutOfRangeException($"{nameof(IntegerDigitLength)} should between 1 and {MaxIntegerDigitLength}.");
+				}
+    
+				_integerDigitLength = value;
                 OnPropertyChanged();
             }
         }
@@ -151,6 +200,11 @@ namespace XamForms.PickerView
             get { return _decimalDigitLength; }
             set
             {
+				if (!(0 <= value && value <= MaxDecimalDigitLength))
+				{
+					throw new IndexOutOfRangeException($"{nameof(DecimalDigitLength)} should between 0 and {MaxDecimalDigitLength}.");
+				}
+
                 _decimalDigitLength = value;
                 OnPropertyChanged();
             }
@@ -167,6 +221,27 @@ namespace XamForms.PickerView
             }
         }
 
+        private double _columnWidth = 20;
+        public double ColumnWidth
+        {
+            get { return _columnWidth; }
+            set
+            {
+                _columnWidth = value;
+                OnPropertyChanged();
+            }
+        }
+
+		private int MaxIntegerDigitLength
+		{
+			get { return _intSetters.Count; }
+		}
+
+		private int MaxDecimalDigitLength
+		{
+			get { return _decSetters.Count; }
+		}
+
         readonly IList<Action<int>> _intSetters = new List<Action<int>>();
         readonly IList<Func<int>> _intGetters = new List<Func<int>>();
 
@@ -182,14 +257,22 @@ namespace XamForms.PickerView
             _intSetters.Add(digitValue => IntegerDigit2 = digitValue);
             _intSetters.Add(digitValue => IntegerDigit3 = digitValue);
             _intSetters.Add(digitValue => IntegerDigit4 = digitValue);
-            _intSetters.Add(digitValue => IntegerDigit5 = digitValue);
+			_intSetters.Add(digitValue => IntegerDigit5 = digitValue);
+			_intSetters.Add(digitValue => IntegerDigit6 = digitValue);
+			_intSetters.Add(digitValue => IntegerDigit7 = digitValue);
+			_intSetters.Add(digitValue => IntegerDigit8 = digitValue);
+			_intSetters.Add(digitValue => IntegerDigit9 = digitValue);
 
             _intGetters.Add(() => IntegerDigit0);
             _intGetters.Add(() => IntegerDigit1);
             _intGetters.Add(() => IntegerDigit2);
             _intGetters.Add(() => IntegerDigit3);
             _intGetters.Add(() => IntegerDigit4);
-            _intGetters.Add(() => IntegerDigit5);
+			_intGetters.Add(() => IntegerDigit5);
+			_intGetters.Add(() => IntegerDigit6);
+			_intGetters.Add(() => IntegerDigit7);
+			_intGetters.Add(() => IntegerDigit8);
+			_intGetters.Add(() => IntegerDigit9);
 
             _decSetters.Add(digitValue => DecimalDigit0 = digitValue);
             _decSetters.Add(digitValue => DecimalDigit1 = digitValue);
@@ -199,9 +282,9 @@ namespace XamForms.PickerView
             _decGetters.Add(() => DecimalDigit1);
             _decGetters.Add(() => DecimalDigit2);
 
-            //FontSize = 17;
-            Value = 12345.3M;
-            IntegerDigitLength = 3;
+            FontSize = -1;
+            Value = 0M;
+            IntegerDigitLength = 4;
             DecimalDigitLength = 2;
         }
 

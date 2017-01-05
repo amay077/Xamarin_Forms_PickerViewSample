@@ -28,6 +28,31 @@ namespace XamForms.PickerView
 
 	    #endregion
 
+	    #region ColumnWidth
+
+	    public static readonly BindableProperty ColumnWidthProperty = BindableProperty.Create(nameof(ColumnWidth), typeof(double), typeof(NumbersPickerView), 17d,
+	        propertyChanged:OnColumnWidthChanged);
+
+	    public double ColumnWidth
+	    {
+	        get { return (double)GetValue(ColumnWidthProperty); }
+	        set { SetValue(ColumnWidthProperty, value); }
+	    }
+
+	    private static void OnColumnWidthChanged(BindableObject bindable, object oldvalue, object newvalue)
+	    {
+			if (newvalue == null)
+			{
+				return;
+			}
+
+	        var view = (NumbersPickerView) bindable;
+	        var vm = view.grid.BindingContext as NumbersPickerViewModel;
+	        vm.ColumnWidth = (double)newvalue;
+	    }
+
+	    #endregion
+
 	    #region Value
 
 	    public static readonly BindableProperty ValueProperty = BindableProperty.Create(nameof(Value), typeof(decimal), typeof(NumbersPickerView), 0M, propertyChanged:OnValueChanged);
@@ -52,7 +77,7 @@ namespace XamForms.PickerView
 	    public static readonly BindableProperty IntegerDigitLengthProperty = BindableProperty.Create(nameof(IntegerDigitLength), typeof(int), typeof(NumbersPickerView), 3,
 	        propertyChanged: OnIntegerDigitLengthChanged);
 
-	    public int IntegerDigitLength
+		public int IntegerDigitLength
 	    {
 	        get { return (int)GetValue(IntegerDigitLengthProperty); }
 	        set { SetValue(IntegerDigitLengthProperty, value); }
@@ -95,6 +120,12 @@ namespace XamForms.PickerView
 
 		    var vm = grid.BindingContext as NumbersPickerViewModel;
 		    vm.PropertyChanged += ViewModel_OnPropertyChanged;
+
+			// View の既定値を ViewModel に伝搬
+			vm.IntegerDigitLength = IntegerDigitLength;
+			vm.DecimalDigitLength = DecimalDigitLength;
+			vm.Value = Value;
+		    vm.ColumnWidth = ColumnWidth;
 		}
 
 	    private void ViewModel_OnPropertyChanged(object sender, PropertyChangedEventArgs e)

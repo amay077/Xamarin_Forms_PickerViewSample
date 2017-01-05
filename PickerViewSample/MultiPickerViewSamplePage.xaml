@@ -16,6 +16,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
@@ -26,9 +27,10 @@
             <ext:NumbersPickerView
                 Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
                 Value="{Binding Text, Mode=TwoWay, Source={x:Reference entryValue}}"
-                FontSize="{Binding Text, Source={x:Reference entryFontSize}}"
                 IntegerDigitLength="{Binding Text, Source={x:Reference entryIntegerDigitLength}}"
                 DecimalDigitLength="{Binding Text, Source={x:Reference entryDecimalDigitLength}}"
+                FontSize="{Binding Text, Source={x:Reference entryFontSize}}"
+                ColumnWidth="{Binding Text, Source={x:Reference entryColumnWidth}}"
             />
 
             <Label Text="Value:" Grid.Row="1" Grid.Column="0"/>
@@ -42,6 +44,9 @@
 
             <Label Text="FontSize:" Grid.Row="4" Grid.Column="0" />
             <Entry x:Name="entryFontSize" Grid.Row="4" Grid.Column="1" Text="24" />
+
+            <Label Text="ColumnWidth:" Grid.Row="5" Grid.Column="0" />
+            <Entry x:Name="entryColumnWidth" Grid.Row="5" Grid.Column="1" Text="30" />
 
         </Grid>
 
